@@ -1,0 +1,2 @@
+include cbpi4-system/config.yaml
+recursive-include cbpi4-system/static *
