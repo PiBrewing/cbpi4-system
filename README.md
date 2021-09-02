@@ -9,7 +9,7 @@
 		- CPU Load: 		CPU load in % (psutil: cpu_perc)
 		- Available Memory:	Available system memory in Mb (psutil: vitrual_memory -> available)
 		- Used memory:		Used memory in percent (psutil: vitrual_memory -> percent)
-		- CPU Temp:			CPU temperature (psutil: sensors_temperatures -> cpu_thermal)
+		- CPU Temp:		CPU temperature (psutil: sensors_temperatures -> cpu_thermal)
 	- Each parameter has to be added as individual sensor.
 	
 ![Sensor Config](https://github.com/avollkopf/cbpi4-system/blob/main/SystemSensor.png?raw=true)
