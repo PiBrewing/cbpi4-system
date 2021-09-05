@@ -11,7 +11,6 @@ import datetime
 from cbpi.api.config import ConfigType
 from cbpi.api.base import CBPiBase
 import psutil
-from psutil._common import bytes2human
 import gpiozero
 from gpiozero import CPUTemperature
 
@@ -134,22 +133,22 @@ class SystemSensor(CBPiSensor):
                 FAHRENHEIT = False if TEMP_UNIT == "C" else True
                 try:
                     if self.Type == "CPU Load [%]":
-                        self.value = psutil.cpu_percent(interval=None)
+                        self.value = round(psutil.cpu_percent(interval=None),1)
                     elif self.Type == "Available Memory [Mb]":
                         mem = psutil.virtual_memory()
-                        self.value = (int(mem.available) / (1024*1024))
+                        self.value = round((int(mem.available) / (1024*1024)),1)
                     elif self.Type == "Used Memory [%]":
                         mem = psutil.virtual_memory()
-                        self.value = float(mem.percent)
+                        self.value = round(float(mem.percent),1)
                     else:
-#                        temp = CPUTemperature()
+                        temp = CPUTemperature()
 #                        logging.info(temp.temperature)
-#                        self.value = temp.temperature
-                        temps = psutil.sensors_temperatures(fahrenheit=FAHRENHEIT)
-                        for name, entries in temps.items():
-                            for entry in entries:
-                                if name == "cpu_thermal":
-                                    self.value = float(entry.current)
+                        self.value = round(temp.temperature,1)
+#                        temps = psutil.sensors_temperatures(fahrenheit=FAHRENHEIT)
+#                        for name, entries in temps.items():
+#                            for entry in entries:
+#                                if name == "cpu_thermal":
+#                                    self.value = float(entry.current)
                         
                     self.log_data(self.value)
                     
