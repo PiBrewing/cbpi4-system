@@ -20,7 +20,7 @@ setup(name='cbpi4-system',
       packages=['cbpi4-system'],
 
       install_requires=[
-            'psutil',
+            'psutil==5.8.0',
             'gpiozero',
       ],
       long_description=long_description,

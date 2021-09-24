@@ -15,9 +15,9 @@
 ![Sensor Config](https://github.com/avollkopf/cbpi4-system/blob/main/SystemSensor.png?raw=true)
 
 - Installation: 
-    - clone from the GIT repo
-	- sudo pip install ./cbpi4-system
-    - cbpi add cbpi4-system
+	- sudo pip3 install cbpi4-system
+	- or install from repo: sudo pip3 install https://github.com/avollkopf/cbpi4-system/archive/main.zip
+    	- cbpi add cbpi4-system
 	
 - Usage:
     - Add Hardware under Sensor and choose SystemSensor as Type
