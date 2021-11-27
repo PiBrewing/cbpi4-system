@@ -85,37 +85,6 @@ class SystemFunctions(CBPiExtension):
             except:
                 logger.warning('Unable to update config')
 
-@parameters([])
-class SystemActor(CBPiActor):
-
-    @action("System Restart", parameters={})
-    async def Restart(self, **kwargs):
-        os.system('systemctl reboot') 
-        pass
-
-    @action("System Shutdown", parameters={})
-    async def Shutdown(self, **kwargs):
-        os.system('systemctl poweroff') 
-        pass
-   
-    def init(self):
-        self.state = False
-        pass
-
-    async def on(self, power=0):
-        self.state = True
-
-    async def off(self):
-        self.state = False
-
-    def get_state(self):
-        return self.state
-    
-    async def run(self):
-        pass
-
-
-
 @parameters([Property.Select("Type", options=["CPU Load [%]", "Available Memory [Mb]", "Used Memory [%]", "CPU Temp"], description="Select type of system data you want to monitor.")])
 class SystemSensor(CBPiSensor):
     
@@ -142,13 +111,7 @@ class SystemSensor(CBPiSensor):
                         self.value = round(float(mem.percent),1)
                     else:
                         temp = CPUTemperature()
-#                        logging.info(temp.temperature)
                         self.value = round(temp.temperature,1)
-#                        temps = psutil.sensors_temperatures(fahrenheit=FAHRENHEIT)
-#                        for name, entries in temps.items():
-#                            for entry in entries:
-#                                if name == "cpu_thermal":
-#                                    self.value = float(entry.current)
                         
                     self.log_data(self.value)
                     
@@ -166,7 +129,6 @@ class SystemSensor(CBPiSensor):
         return dict(value=self.value)
 
 def setup(cbpi):
-#    cbpi.plugin.register("System", SystemActor)
     cbpi.plugin.register("SystemSensor", SystemSensor)
     cbpi.plugin.register("SystemFunctions", SystemFunctions)
     pass
