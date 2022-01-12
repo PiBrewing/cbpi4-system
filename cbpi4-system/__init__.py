@@ -112,7 +112,8 @@ class SystemSensor(CBPiSensor):
                     else:
                         temp = CPUTemperature()
                         self.value = round(temp.temperature,1)
-                        
+
+                    self.push_update(self.value)                       
                     self.log_data(self.value)
                     
                 except Exception as e:
@@ -121,7 +122,7 @@ class SystemSensor(CBPiSensor):
             counter += 1
             if counter == self.Timer:
                 counter = 0
-            self.push_update(self.value)
+            self.cbpi.ws.send(dict(topic="sensorstate", id=self.id, value=self.value))
             await asyncio.sleep(1)
 
    

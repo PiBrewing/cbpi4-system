@@ -31,6 +31,7 @@ Each parameter has to be added as individual sensor.
 
 ### Changelog:
 
+- 12.01.21: (0.0.4) Reduced amount of mqtt traffic
 - 27.11.21: (0.0.3) New Readme file and link to plugin included in setup.py
 - 02.09.21: (0.0.2) Remove Actor to reboot / shutdown system. Add automatic reboot and add system sensors
 - 18.06.21: (0.0.1) Initial commit with Actor to shutdown/reboot system
