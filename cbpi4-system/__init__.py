@@ -122,7 +122,8 @@ class SystemSensor(CBPiSensor):
             counter += 1
             if counter == self.Timer:
                 counter = 0
-            self.cbpi.ws.send(dict(topic="sensorstate", id=self.id, value=self.value))
+            self.push_update(self.value,False)    
+            #self.cbpi.ws.send(dict(topic="sensorstate", id=self.id, value=self.value))
             await asyncio.sleep(1)
 
    
