@@ -22,7 +22,6 @@ Each parameter has to be added as individual sensor.
 ### Installation: 
 - sudo pip3 install cbpi4-system
 - or install from repo: sudo pip3 install https://github.com/avollkopf/cbpi4-system/archive/main.zip
-- cbpi add cbpi4-system
 	
 ### Usage:
 
