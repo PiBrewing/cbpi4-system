@@ -30,6 +30,7 @@ Each parameter has to be added as individual sensor.
 
 ### Changelog:
 
+- 08.01.23: (0.0.8) updated requirements
 - 16.01.22: (0.0.5) Adaption for cbpi 4.0.1.2
 - 12.01.22: (0.0.4) Reduced amount of mqtt traffic
 - 27.11.21: (0.0.3) New Readme file and link to plugin included in setup.py

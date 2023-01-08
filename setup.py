@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='cbpi4-system',
-      version='0.0.7',
+      version='0.0.8',
       description='CraftBeerPi4 Plugin for system fucntions',
       author='Alexander Vollkopf',
       author_email='avollkopf@web.de',
@@ -20,7 +20,7 @@ setup(name='cbpi4-system',
       packages=['cbpi4-system'],
 
       install_requires=[
-            'psutil==5.9.0',
+            'psutil>=5.9.0',
             'gpiozero',
       ],
       long_description=long_description,
