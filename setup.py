@@ -7,12 +7,13 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='cbpi4-system',
-      version='0.0.8',
+      version='0.0.9.a1',
       description='CraftBeerPi4 Plugin for system fucntions',
       author='Alexander Vollkopf',
       author_email='avollkopf@web.de',
       url='https://github.com/avollkopf/cbpi4-system',
       include_package_data=True,
+      keywords='globalsettings',
       package_data={
         # If any package contains *.txt or *.rst files, include them:
       '': ['*.txt', '*.rst', '*.yaml'],
