@@ -133,8 +133,14 @@ class SystemFunctions(CBPiExtension):
                                                                                                         {"label": "23", "value": 23}],
                                                                                                         source="cbpi4-system")
                 except:
-                    logger.warning('Unable to update config')               
+                    logger.warning('Unable to update config')      
 
+        if self.system_update == None or self.system_update != self.version:
+            try:
+                 await self.cbpi.config.add("system_update", self.version,type=ConfigType.STRING,source="hidden")         
+            except:
+                logger.warning('Unable to update config') 
+                
 @parameters([Property.Select("Type", options=["CPU Load [%]", "Available Memory [Mb]", "Used Memory [%]", "CPU Temp"], description="Select type of system data you want to monitor.")])
 class SystemSensor(CBPiSensor):
     
