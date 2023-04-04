@@ -30,7 +30,7 @@ Each parameter has to be added as individual sensor.
 
 ### Changelog:
 
-- 04.04.23: (0.0.9.a1) test for gloabl plugin settings selection branch
+- 04.04.23: (0.0.9.a2) test for gloabl plugin settings selection branch
 - 08.01.23: (0.0.8) updated requirements
 - 16.01.22: (0.0.5) Adaption for cbpi 4.0.1.2
 - 12.01.22: (0.0.4) Reduced amount of mqtt traffic

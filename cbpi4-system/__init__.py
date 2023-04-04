@@ -106,7 +106,7 @@ class SystemFunctions(CBPiExtension):
         else:
             if self.system_update == None or self.system_update != self.version:
                 try:
-                    await self.cbpi.config.add("AutoRebootTime", "0", type=ConfigType.SELECT, description="Time for daily reboot", 
+                    await self.cbpi.config.add("AutoRebootTime", reboottime, type=ConfigType.SELECT, description="Time for daily reboot", 
                                                                                                       options=[{"label": "0", "value": 0},
                                                                                                         {"label": "1", "value": 1},
                                                                                                         {"label": "2", "value": 2},
