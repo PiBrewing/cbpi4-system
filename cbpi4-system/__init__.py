@@ -27,8 +27,9 @@ class SystemFunctions(CBPiExtension):
 
         plugin = await self.cbpi.plugin.load_plugin_list("cbpi4-system")
         self.version=plugin[0].get("Version","0.0.0")
+        self.name=plugin[0].get("Name","cbpi4-system")
 
-        self.system_update = self.cbpi.config.get("system_update", None)
+        self.system_update = self.cbpi.config.get(self.name+"_update", None)
 
         logger.info('Starting System Functions background task')
         await self.systemparameters()
@@ -58,7 +59,7 @@ class SystemFunctions(CBPiExtension):
                 await self.cbpi.config.add("AutoReboot", "No", type=ConfigType.SELECT, description="Reboot Pi once a day at selected time",
                                                                                                     options=[{"label": "Yes", "value": "Yes"},
                                                                                                         {"label": "No", "value": "No"}],
-                                                                                                        source="cbpi4-system")
+                                                                                                        source=self.name)
             except:
                 logger.warning('Unable to update config')
         else:
@@ -67,7 +68,7 @@ class SystemFunctions(CBPiExtension):
                     await self.cbpi.config.add("AutoReboot", autoreboot, type=ConfigType.SELECT, description="Reboot Pi once a day at selected time",
                                                                                                     options=[{"label": "Yes", "value": "Yes"},
                                                                                                         {"label": "No", "value": "No"}],
-                                                                                                        source="cbpi4-system")
+                                                                                                        source=self.name)
                 except:
                     logger.warning('Unable to update config')               
                 
@@ -100,7 +101,7 @@ class SystemFunctions(CBPiExtension):
                                                                                                         {"label": "21", "value": 21},
                                                                                                         {"label": "22", "value": 22},
                                                                                                         {"label": "23", "value": 23}],
-                                                                                                        source="cbpi4-system")
+                                                                                                        source=self.name)
             except:
                 logger.warning('Unable to update config')
         else:
@@ -131,13 +132,13 @@ class SystemFunctions(CBPiExtension):
                                                                                                         {"label": "21", "value": 21},
                                                                                                         {"label": "22", "value": 22},
                                                                                                         {"label": "23", "value": 23}],
-                                                                                                        source="cbpi4-system")
+                                                                                                        source=self.name)
                 except:
                     logger.warning('Unable to update config')      
 
         if self.system_update == None or self.system_update != self.version:
             try:
-                 await self.cbpi.config.add("system_update", self.version,type=ConfigType.STRING,description="cbpi4 system version update",source="hidden")         
+                 await self.cbpi.config.add(self.name+"_update", self.version,type=ConfigType.STRING,description="cbpi4 system version update",source="hidden")         
             except Exception as e:
                 logger.warning('Unable to update config') 
                 logger.warning(e)
