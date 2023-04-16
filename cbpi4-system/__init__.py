@@ -57,18 +57,20 @@ class SystemFunctions(CBPiExtension):
             logger.info("INIT AutoReboot parameter")
             try:
                 await self.cbpi.config.add("AutoReboot", "No", type=ConfigType.SELECT, description="Reboot Pi once a day at selected time",
+                                                                                                    source=self.name,
                                                                                                     options=[{"label": "Yes", "value": "Yes"},
-                                                                                                        {"label": "No", "value": "No"}],
-                                                                                                        source=self.name)
+                                                                                                        {"label": "No", "value": "No"}])
+                                                                                                        
             except:
                 logger.warning('Unable to update config')
         else:
             if self.system_update == None or self.system_update != self.version:
                 try:
                     await self.cbpi.config.add("AutoReboot", autoreboot, type=ConfigType.SELECT, description="Reboot Pi once a day at selected time",
+                                                                                                    source=self.name,
                                                                                                     options=[{"label": "Yes", "value": "Yes"},
-                                                                                                        {"label": "No", "value": "No"}],
-                                                                                                        source=self.name)
+                                                                                                        {"label": "No", "value": "No"}])
+                                                                                                        
                 except:
                     logger.warning('Unable to update config')               
                 
@@ -77,6 +79,7 @@ class SystemFunctions(CBPiExtension):
             logger.info("INIT RebootTime parameter")
             try:
                 await self.cbpi.config.add("AutoRebootTime", "0", type=ConfigType.SELECT, description="Time for daily reboot", 
+                                                                                                        source=self.name,
                                                                                                       options=[{"label": "0", "value": 0},
                                                                                                         {"label": "1", "value": 1},
                                                                                                         {"label": "2", "value": 2},
@@ -100,14 +103,15 @@ class SystemFunctions(CBPiExtension):
                                                                                                         {"label": "20", "value": 20},
                                                                                                         {"label": "21", "value": 21},
                                                                                                         {"label": "22", "value": 22},
-                                                                                                        {"label": "23", "value": 23}],
-                                                                                                        source=self.name)
+                                                                                                        {"label": "23", "value": 23}])
+                                                                                                    
             except:
                 logger.warning('Unable to update config')
         else:
             if self.system_update == None or self.system_update != self.version:
                 try:
                     await self.cbpi.config.add("AutoRebootTime", reboottime, type=ConfigType.SELECT, description="Time for daily reboot", 
+                                                                                                        source=self.name,
                                                                                                       options=[{"label": "0", "value": 0},
                                                                                                         {"label": "1", "value": 1},
                                                                                                         {"label": "2", "value": 2},
@@ -131,8 +135,8 @@ class SystemFunctions(CBPiExtension):
                                                                                                         {"label": "20", "value": 20},
                                                                                                         {"label": "21", "value": 21},
                                                                                                         {"label": "22", "value": 22},
-                                                                                                        {"label": "23", "value": 23}],
-                                                                                                        source=self.name)
+                                                                                                        {"label": "23", "value": 23}])
+
                 except:
                     logger.warning('Unable to update config')      
 
