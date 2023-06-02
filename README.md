@@ -30,6 +30,7 @@ Each parameter has to be added as individual sensor.
 
 ### Changelog:
 
+- 02.06.23: (0.0.9.rc1) add cbpi4 version requirements
 - 16.04.23: (0.0.9.a6) fixed bug with creation of parameters
 - 05.04.23: (0.0.9.a5) test for gloabl plugin settings selection branch
 - 08.01.23: (0.0.8) updated requirements
