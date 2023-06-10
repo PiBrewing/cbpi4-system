@@ -4,7 +4,7 @@
 
 - Plugin has capability to reboot Pi every day at a time that can be specified in the settings.
 
-![Auto Reboot](https://github.com/avollkopf/cbpi4-system/blob/main/AutoReboot.png?raw=true)
+![Auto Reboot](https://github.com/PiBrewing/cbpi4-system/blob/main/AutoReboot.png?raw=true)
 
 ### Sensors	
 
@@ -17,11 +17,11 @@ Plugin will add system 'sensors' to monitor some system parameters. The psutil p
 
 Each parameter has to be added as individual sensor.
 	
-![Sensor Config](https://github.com/avollkopf/cbpi4-system/blob/main/SystemSensor.png?raw=true)
+![Sensor Config](https://github.com/PiBrewing/cbpi4-system/blob/main/SystemSensor.png?raw=true)
 
 ### Installation: 
 - sudo pip3 install cbpi4-system
-- or install from repo: sudo pip3 install https://github.com/avollkopf/cbpi4-system/archive/main.zip
+- or install from repo: sudo pip3 install https://github.com/PiBrewing/cbpi4-system/archive/main.zip
 	
 ### Usage:
 
@@ -30,6 +30,10 @@ Each parameter has to be added as individual sensor.
 
 ### Changelog:
 
+- 10.06.23: (0.0.9) change version to release
+- 02.06.23: (0.0.9.rc1) add cbpi4 version requirements
+- 16.04.23: (0.0.9.a6) fixed bug with creation of parameters
+- 05.04.23: (0.0.9.a5) test for gloabl plugin settings selection branch
 - 08.01.23: (0.0.8) updated requirements
 - 16.01.22: (0.0.5) Adaption for cbpi 4.0.1.2
 - 12.01.22: (0.0.4) Reduced amount of mqtt traffic

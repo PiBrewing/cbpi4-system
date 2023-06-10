@@ -24,6 +24,13 @@ class SystemFunctions(CBPiExtension):
         self._task = asyncio.create_task(self.run())
 
     async def run(self):
+
+        plugin = await self.cbpi.plugin.load_plugin_list("cbpi4-system")
+        self.version=plugin[0].get("Version","0.0.0")
+        self.name=plugin[0].get("Name","cbpi4-system")
+
+        self.system_update = self.cbpi.config.get(self.name+"_update", None)
+
         logger.info('Starting System Functions background task')
         await self.systemparameters()
 
@@ -44,21 +51,36 @@ class SystemFunctions(CBPiExtension):
 
     async def systemparameters(self):
         autoreboot = self.cbpi.config.get("AutoReboot", None)
+        reboottime = self.cbpi.config.get("AutoRebootTime", None)
+        
         if autoreboot is None:
             logger.info("INIT AutoReboot parameter")
             try:
-                await self.cbpi.config.add("AutoReboot", "No", ConfigType.SELECT, "Reboot Pi once a day at selected time",
-                                                                                                        [{"label": "Yes", "value": "Yes"},
+                await self.cbpi.config.add("AutoReboot", "No", type=ConfigType.SELECT, description="Reboot Pi once a day at selected time",
+                                                                                                    source=self.name,
+                                                                                                    options=[{"label": "Yes", "value": "Yes"},
                                                                                                         {"label": "No", "value": "No"}])
+                                                                                                        
             except:
                 logger.warning('Unable to update config')
+        else:
+            if self.system_update == None or self.system_update != self.version:
+                try:
+                    await self.cbpi.config.add("AutoReboot", autoreboot, type=ConfigType.SELECT, description="Reboot Pi once a day at selected time",
+                                                                                                    source=self.name,
+                                                                                                    options=[{"label": "Yes", "value": "Yes"},
+                                                                                                        {"label": "No", "value": "No"}])
+                                                                                                        
+                except:
+                    logger.warning('Unable to update config')               
                 
-        reboottime = self.cbpi.config.get("AutoRebootTime", None)
+
         if reboottime is None:
             logger.info("INIT RebootTime parameter")
             try:
-                await self.cbpi.config.add("AutoRebootTime", "0", ConfigType.SELECT, "Time for daily reboot", 
-                                                                                                        [{"label": "0", "value": 0},
+                await self.cbpi.config.add("AutoRebootTime", "0", type=ConfigType.SELECT, description="Time for daily reboot", 
+                                                                                                        source=self.name,
+                                                                                                      options=[{"label": "0", "value": 0},
                                                                                                         {"label": "1", "value": 1},
                                                                                                         {"label": "2", "value": 2},
                                                                                                         {"label": "3", "value": 3},
@@ -82,9 +104,49 @@ class SystemFunctions(CBPiExtension):
                                                                                                         {"label": "21", "value": 21},
                                                                                                         {"label": "22", "value": 22},
                                                                                                         {"label": "23", "value": 23}])
+                                                                                                    
             except:
                 logger.warning('Unable to update config')
+        else:
+            if self.system_update == None or self.system_update != self.version:
+                try:
+                    await self.cbpi.config.add("AutoRebootTime", reboottime, type=ConfigType.SELECT, description="Time for daily reboot", 
+                                                                                                        source=self.name,
+                                                                                                      options=[{"label": "0", "value": 0},
+                                                                                                        {"label": "1", "value": 1},
+                                                                                                        {"label": "2", "value": 2},
+                                                                                                        {"label": "3", "value": 3},
+                                                                                                        {"label": "4", "value": 4},
+                                                                                                        {"label": "5", "value": 5},
+                                                                                                        {"label": "6", "value": 6},
+                                                                                                        {"label": "7", "value": 7},
+                                                                                                        {"label": "8", "value": 8},
+                                                                                                        {"label": "9", "value": 9},
+                                                                                                        {"label": "10", "value": 10},
+                                                                                                        {"label": "11", "value": 11},
+                                                                                                        {"label": "12", "value": 12},
+                                                                                                        {"label": "13", "value": 13},
+                                                                                                        {"label": "14", "value": 14},
+                                                                                                        {"label": "15", "value": 15},
+                                                                                                        {"label": "16", "value": 16},
+                                                                                                        {"label": "17", "value": 17},
+                                                                                                        {"label": "18", "value": 18},
+                                                                                                        {"label": "19", "value": 19},
+                                                                                                        {"label": "20", "value": 20},
+                                                                                                        {"label": "21", "value": 21},
+                                                                                                        {"label": "22", "value": 22},
+                                                                                                        {"label": "23", "value": 23}])
 
+                except:
+                    logger.warning('Unable to update config')      
+
+        if self.system_update == None or self.system_update != self.version:
+            try:
+                 await self.cbpi.config.add(self.name+"_update", self.version,type=ConfigType.STRING,description="cbpi4 system version update",source="hidden")         
+            except Exception as e:
+                logger.warning('Unable to update config') 
+                logger.warning(e)
+                
 @parameters([Property.Select("Type", options=["CPU Load [%]", "Available Memory [Mb]", "Used Memory [%]", "CPU Temp"], description="Select type of system data you want to monitor.")])
 class SystemSensor(CBPiSensor):
     
