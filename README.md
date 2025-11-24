@@ -19,9 +19,12 @@ Each parameter has to be added as individual sensor.
 	
 ![Sensor Config](https://github.com/PiBrewing/cbpi4-system/blob/main/SystemSensor.png?raw=true)
 
-### Installation: 
-- sudo pip3 install cbpi4-system
-- or install from repo: sudo pip3 install https://github.com/PiBrewing/cbpi4-system/archive/main.zip
+### Installation:
+
+Please have a look at the [Craftbeerpi4 Documentation](https://openbrewing.gitbook.io/craftbeerpi4_support/readme/plugin-installation)
+
+- Package name: cbpi4-system
+- Package link: https://github.com/PiBrewing/cbpi4-system/archive/main.zip
 	
 ### Usage:
 
@@ -30,6 +33,7 @@ Each parameter has to be added as individual sensor.
 
 ### Changelog:
 
+- 24.11.25: (0.1.0) Add pyproject.toml to support pip 25.3+
 - 10.06.23: (0.0.9) change version to release
 - 02.06.23: (0.0.9.rc1) add cbpi4 version requirements
 - 16.04.23: (0.0.9.a6) fixed bug with creation of parameters
